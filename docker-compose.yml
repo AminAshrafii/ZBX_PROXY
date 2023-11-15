@@ -28,31 +28,6 @@ services:
       com.zabbix.dbtype: "sqlite3"
       com.zabbix.os: "ubuntu"
 
-  zabbix-java-gateway:
-    image: registry.snapp.market/devops/base-images/zabbix/zabbix-java-gateway:ubuntu-6.4-latest
-    ports:
-      - "10052:10052"
-    stop_grace_period: 5s
-    labels:
-      com.zabbix.description: "Zabbix Java Gateway"
-      com.zabbix.company: "Zabbix LLC"
-      com.zabbix.component: "java-gateway"
-      com.zabbix.os: "ubuntu"
-
-  zabbix-snmptraps:
-    image: registry.snapp.market/devops/base-images/zabbix/zabbix-snmptraps:ubuntu-6.4-latest
-    ports:
-      - "162:1162/udp"
-    volumes:
-      - snmptraps:/var/lib/zabbix/snmptraps:rw
-    stop_grace_period: 5s
-    labels:
-      com.zabbix.description: "Zabbix snmptraps"
-      com.zabbix.company: "Zabbix LLC"
-      com.zabbix.component: "snmptraps"
-      com.zabbix.os: "ubuntu"
-
-
   zabbix-agent:
     image: registry.snapp.market/devops/base-images/zabbix/zabbix-agent:ubuntu-6.4-latest
     ports:
