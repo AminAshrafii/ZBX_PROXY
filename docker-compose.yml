@@ -54,28 +54,6 @@ services:
       com.zabbix.component: "snmptraps"
       com.zabbix.os: "ubuntu"
 
-
-  zabbix-agent:
-    container_name: zabbix-agent
-    image: registry.snapp.market/devops/base-images/zabbix/zabbix-agent:ubuntu-6.4-latest
-    ports:
-      - "10050:10050"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d
-      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules
-      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc
-      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys
-      - ./zbx_env/conf/zabbix_agentd.conf:/etc/zabbix/zabbix_agentd.conf
-    privileged: true
-    pid: "host"
-    stop_grace_period: 5s
-    labels:
-      com.zabbix.description: "Zabbix agent"
-      com.zabbix.company: "Zabbix LLC"
-      com.zabbix.component: "zabbix-agentd"
-      com.zabbix.os: "ubuntu"
-
 volumes:
   snmptraps:
 
