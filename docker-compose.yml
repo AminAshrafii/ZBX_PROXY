@@ -64,6 +64,7 @@ services:
       - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules
       - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc
       - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys
+      - ./zbx_env/conf/zabbix_agentd.conf:/etc/zabbix/zabbix_agentd.conf
     privileged: true
     pid: "host"
     stop_grace_period: 5s
