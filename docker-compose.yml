@@ -5,12 +5,12 @@ services:
     ports:
       - "10061:10051"
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
-      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
-      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
-      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
-      - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
+      - /etc/localtime:/etc/localtime
+      - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts
+      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules
+      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc
+      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys
+      - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs
       - snmptraps:/var/lib/zabbix/snmptraps:rw
     ulimits:
       nproc: 65535
@@ -58,11 +58,11 @@ services:
     ports:
       - "10050:10050"
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d:ro
-      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
-      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
-      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+      - /etc/localtime:/etc/localtime
+      - ./zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d
+      - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules
+      - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc
+      - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys
     privileged: true
     pid: "host"
     stop_grace_period: 5s
