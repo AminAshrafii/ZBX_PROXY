@@ -20,13 +20,6 @@ services:
     depends_on:
       - zabbix-java-gateway
       - zabbix-snmptraps
-    networks:
-      zbx_net_backend:
-        aliases:
-          - zabbix-proxy-sqlite3
-          - zabbix-proxy-ubuntu-sqlite3
-          - zabbix-proxy-sqlite3-ubuntu
-      zbx_net_frontend:
     stop_grace_period: 30s
     labels:
       com.zabbix.description: "Zabbix proxy with SQLite3 database support"
@@ -39,11 +32,6 @@ services:
     image: registry.snapp.market/devops/base-images/zabbix/zabbix-java-gateway:ubuntu-6.4-latest
     ports:
       - "10052:10052"
-    networks:
-      zbx_net_backend:
-        aliases:
-          - zabbix-java-gateway
-          - zabbix-java-gateway-ubuntu
     stop_grace_period: 5s
     labels:
       com.zabbix.description: "Zabbix Java Gateway"
@@ -57,11 +45,6 @@ services:
       - "162:1162/udp"
     volumes:
       - snmptraps:/var/lib/zabbix/snmptraps:rw
-    networks:
-      zbx_net_frontend:
-        aliases:
-          - zabbix-snmptraps
-      zbx_net_backend:
     stop_grace_period: 5s
     labels:
       com.zabbix.description: "Zabbix snmptraps"
@@ -82,12 +65,6 @@ services:
       - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
     privileged: true
     pid: "host"
-    networks:
-      zbx_net_backend:
-        aliases:
-          - zabbix-agent
-          - zabbix-agent-passive
-          - zabbix-agent-ubuntu
     stop_grace_period: 5s
     labels:
       com.zabbix.description: "Zabbix agent"
@@ -98,21 +75,3 @@ services:
 volumes:
   snmptraps:
 
-networks:
-  zbx_net_frontend:
-    driver: bridge
-    driver_opts:
-      com.docker.network.enable_ipv6: "false"
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
-  zbx_net_backend:
-    driver: bridge
-    driver_opts:
-      com.docker.network.enable_ipv6: "false"
-    internal: true
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.239.0/24
