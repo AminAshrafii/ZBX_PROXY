@@ -5,7 +5,7 @@ services:
     ports:
       - "10061:10051"
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /etc/localtime:/etc/localtime:ro
       - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts
       - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules
       - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc
@@ -58,7 +58,7 @@ services:
     ports:
       - "10050:10050"
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /etc/localtime:/etc/localtime:ro
       - ./zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d
       - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules
       - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc
